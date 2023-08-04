@@ -1,0 +1,11 @@
+version: "2"
+
+services:
+  PaddleOCR:
+    container_name: ppocr_api
+    image: ppocrapi:1.0
+    environment:
+      - "TZ=Asia/Hong_Kong"
+    ports:
+      - "10778:8000"
+    restart: unless-stopped

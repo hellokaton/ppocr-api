@@ -1,0 +1,6 @@
+__pycache__/
+*.png
+*.jpg
+test.py
+.idea
+*.iml
