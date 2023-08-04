@@ -12,32 +12,27 @@
 
 在 `Centos7` 的服务器中测试成功, 需要先安装好 `Docker`
 
-1. 复制项目至部署路径
-
 ```shell
-git clone https://github.com/hellokaton/ppocr-api.git
-```
+git clone https://ghproxy.com/https://github.com/hellokaton/ppocr-api.git
+cd ppocr-api
 
-2. 制作 Docker 镜像
-
-```shell
+# 制作 Docker 镜像
 docker build -t ppocrapi:1.0 .
 ```
 
-3. 编辑 `docker-compose.yml`
+编辑 `docker-compose.yml`
 
 ```yaml
-version: "2"
+version: "3"
 
 services:
-
-  PaddleOCR:
-    container_name: paddle_ocr_api # 自定义容器名
-    image: paddleocrapi:cgc-v1 # 第2步自定义的镜像名与标签
+  app:
+    container_name: ppocr-api
+    image: ppocrapi:1.0
     environment:
-      - TZ=Asia/Hong_Kong
+      - "TZ=Asia/Hong_Kong"
     ports:
-     - 10778:8000 # 自定义服务暴露端口, 8000为FastAPI默认端口, 不做修改
+      - "10778:8000"
     restart: unless-stopped
 ```
 
